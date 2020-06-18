@@ -1,0 +1,4 @@
+metrics,Lasso,Ridge
+RMSE,27.18608,27.646114
+MAE,20.735077,20.84833
+best_params,{'alpha': 0.001},{'alpha': 0.01}
