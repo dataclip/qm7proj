@@ -15,8 +15,8 @@ if __name__ == "__main__":
     start = timer()
 
     kr = GridSearchCV(KernelRidge(kernel='laplacian'), cv=5,
-                      param_grid={"alpha": [1e-7],
-                                  "gamma": [0.5e-4, 0.7e-4, 1e-4, 1.2e-4, 1.5e-4]}, n_jobs=-1)
+                      param_grid={"alpha": [1.3e-8],
+                                  "gamma": [5e-8]}, n_jobs=-1)
     # see notebook for alpha ana gamma values
 
     kf = KFold(n_splits=5, shuffle=True, random_state=234)
@@ -40,6 +40,6 @@ if __name__ == "__main__":
             }
 
     df = pd.DataFrame(data, columns=['RMSE', 'MAE', 'Best_params', 'Best_score'])
-    df.to_csv('results/kernel_laplacian.csv', index=False)
-    joblib.dump('../models/kernel_ridge_laplacian.pkl')
     print(df)
+    df.to_csv('../results/kernel_laplacian.csv', index=False)
+    joblib.dump(kr, '../models/kernel_ridge_laplacian.pkl')
