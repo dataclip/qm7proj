@@ -1,9 +1,7 @@
 import numpy as np
 from sklearn import preprocessing
 
-
 if __name__ == "__main__":
-
     X = np.load('../data/coulomb_matrix.npy')
     y = np.load('../data/atomization_energies.npy')
 
@@ -14,15 +12,18 @@ if __name__ == "__main__":
        [False, False,  True]])
     '''
 
-    triuind = (np.arange(23)[:,np.newaxis] <= np.arange(23)[np.newaxis,:]).flatten()
+    triuind = (np.arange(23)[:, np.newaxis] <= np.arange(23)[np.newaxis, :]).flatten()
+
 
     def sorted_coulomb_matrix(X):
         def _realize_(x):
-            inds = np.argsort(-np.linalg.norm(x, axis=1)) # sort indices of coulomb matrix
-            x = x[inds][:,inds] # permute rows first, then columns
-            x = x.flatten()[triuind] # flaten and slice
+            inds = np.argsort(-np.linalg.norm(x, axis=1))  # sort indices of coulomb matrix
+            x = x[inds][:, inds]  # permute rows first, then columns
+            x = x.flatten()[triuind]  # flatten and slice
             return x
+
         return np.array([_realize_(z) for z in X])
+
 
     X = sorted_coulomb_matrix(X)
 
@@ -51,5 +52,3 @@ if __name__ == "__main__":
     np.save('../input/X_scaled.npy', X_scaled)
     np.save('../input/X_minmax_scaled.npy', X_minmax_scaled)
     np.save('../input/y.npy', y)
-
-
