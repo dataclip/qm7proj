@@ -21,7 +21,7 @@ if __name__ == "__main__":
     np.save('../data/coulomb_matrix.npy', X)
     np.save('../data/atomization_energies.npy', y)
     np.save('../data/cartesian_coordinates.npy', R)
-    np.save('../data/folds.npy', R)
+    np.save('../data/folds.npy', P)
 
 
 
