@@ -54,7 +54,7 @@ if torch.cuda.is_available():
     mlp_model.cuda()
 
 '''set variables '''
-learning_rate = 0.00022
+learning_rate = 0.00015
 batch_size = 25
 epochs = 1000
 
@@ -121,7 +121,7 @@ def train_reg(model, epochs, bs=batch_size):
             elapsed_time = end - start
 
             if epoch % 8 == 1:
-                print('Epoch {}/{} \t loss={:.8f} \t val_loss={:.8f} \t time={:.2f}s'.format(
+                print('Epoch {}/{} \t loss={:.4f} \t test_loss={:.4f} \t time={:.2f}s'.format(
                     epoch + 1, epochs, avg_training_loss, avg_test_loss, elapsed_time))
 
         loss_df = pd.DataFrame.from_dict(loss_values)
@@ -145,6 +145,7 @@ if __name__ == "__main__":
     y_org = (y.reshape(-1, 1))
 
     joblib.dump(mlp_model, '../models/neural_net.pkl')
+    torch.save(mlp_model.state_dict(), '../models/torch_mlp_model.pt')
 
     rmse = np.sqrt(mean_squared_error(y_org, y_pred))
     mae = mean_absolute_error(y_org, y_pred)
