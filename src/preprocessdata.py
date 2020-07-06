@@ -71,7 +71,7 @@ if __name__ == "__main__":
     '''
 
     X_sorted_minmax_scaled = preprocessing.MinMaxScaler().fit_transform(X_sorted)
-    # X_randomized_minmax_scaled = preprocessing.MinMaxScaler().fit_transform(X_randomized)
+    X_randomized_minmax_scaled = preprocessing.MinMaxScaler().fit_transform(X_randomized)
     # X_expanded_minmax_scaled = preprocessing.MinMaxScaler().fit_transform(X_expanded)
 
     print('X_sorted_minmax_scaled max :', X_sorted_minmax_scaled.max())
